@@ -6,6 +6,7 @@
 .pnp.js
 src/consts.js
 .gitignore
+.env
 
 # testing
 /coverage
