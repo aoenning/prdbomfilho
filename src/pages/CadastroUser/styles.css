@@ -1,0 +1,12 @@
+img {
+    width: 100px;
+    border-radius: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+TextField {
+    margin-bottom: 20px;
+    justify-content: center;
+}
