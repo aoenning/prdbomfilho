@@ -15,7 +15,7 @@ const Auths = () => {
         password: '',
     });
     const dispatch = useDispatch();
-    const paperStyles = { padding: 50, heigth: 700, width: 400, margin: '20px auto' }
+    const paperStyles = { padding: 50, width: 400, margin: '70px auto' }
     const { login, usuario } = select(state => state.autenticacao)
     const { autenticacao } = useSelector(function (state) { return state.autenticacao });
     function setAutenticacao() {

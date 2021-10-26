@@ -20,7 +20,7 @@ header {
 header > div {
     cursor: pointer;
     transition: 0.5s;
-    padding: 10px 20px;
+    padding: 15px 15px;
     text-align: right;   
 }
 
@@ -37,7 +37,7 @@ header img {
 }
 
 header span:not(.mdi) {
-    margin-bottom: -10px;
+    /* margin-bottom: -10px; */
 }
 
 header span.mdi {
@@ -110,6 +110,9 @@ sidebar ul li a text {
 sidebar img {
     width: 50%;
     border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 

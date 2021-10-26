@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Img from './../../assents/avatarMasc.jpg'
+import Img from './../../assents/avatarMasc.jpg';
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+} from '@material-ui/core';
+
 
 const Header = () => {
     const [autenticacao, setAutenticacao] = useState(false);
     const [user, setUser] = useState(null);
+    const [showMsg, setShowMsg] = useState(false);
+    const [msg, setMsg] = React.useState('');
+
     useEffect(() => {
         loginUser();
     }, [])
@@ -16,6 +27,30 @@ const Header = () => {
         }
 
     }
+
+    async function logout() {
+        try {
+
+            const result = localStorage.clear();
+            setShowMsg(false);
+            window.location.reload();
+            // .then(() => {
+            // navigation.reset({
+            //     routes: [{ name: 'Login' }]
+            // });
+            //  navigation.navigate("Login");
+            // })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function setOpenMsg() {
+        setMsg('Deseja realmente excluir informação?');
+        setShowMsg(true);
+    }
+
+
     return (
         <header className="container-fluid d-flex justify-content-end">
             <div className="d-flex align-items-center">
@@ -26,7 +61,21 @@ const Header = () => {
                 <img src={Img} />
                 <span className="mdi mid-chevron-down text-white"></span>
             </div>
-        </header>
+            <div className="d-flex  align-items-center justify-content-center" onClick={() => setOpenMsg()}>
+                <div>
+                    <span className="d-block n-0 p-0 text-white">Sair</span>
+                </div>
+                <span className="mdi mdi-logout"></span>
+            </div>
+            <Dialog open={showMsg}>
+                <DialogTitle>Atenção!</DialogTitle>
+                <DialogContent>{msg}</DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setShowMsg(false)}> Cancelar</Button>
+                    <Button onClick={() => logout()}> Confirmar</Button>
+                </DialogActions>
+            </Dialog>
+        </header >
     );
 };
 
