@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import Logo from './../../assents/Logo.png';
 import './styles.css';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { takeLatest, all, call, put, select } from 'redux-saga/effects';
 import { loginAll, loginUpdate } from '../../store/modules/login/action';
