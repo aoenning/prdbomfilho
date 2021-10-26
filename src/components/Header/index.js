@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Img from './../../assents/avatarMasc.jpg';
+import { Link, useHistory } from 'react-router-dom';
 import {
     Button,
     Dialog,
@@ -14,6 +15,7 @@ const Header = () => {
     const [user, setUser] = useState(null);
     const [showMsg, setShowMsg] = useState(false);
     const [msg, setMsg] = React.useState('');
+    const history = useHistory();
 
     useEffect(() => {
         loginUser();
@@ -33,7 +35,8 @@ const Header = () => {
 
             const result = localStorage.clear();
             setShowMsg(false);
-            window.location.reload();
+            history.push('/');
+            // window.location.reload();
             // .then(() => {
             // navigation.reset({
             //     routes: [{ name: 'Login' }]

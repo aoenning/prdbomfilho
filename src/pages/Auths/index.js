@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { takeLatest, all, call, put, select } from 'redux-saga/effects';
 import { loginAll, loginUpdate } from '../../store/modules/login/action';
 import api from './../../services/api';
+import { Link, useHistory } from 'react-router-dom';
 const Auths = () => {
     const [cpf, setCpf] = useState('');
     const [password, setPassord] = useState('');
@@ -14,6 +15,7 @@ const Auths = () => {
         cpf: '',
         password: '',
     });
+    const history = useHistory();
     const dispatch = useDispatch();
     const paperStyles = { padding: 50, width: 400, margin: '70px auto' }
     const { login, usuario } = select(state => state.autenticacao)
@@ -41,7 +43,8 @@ const Auths = () => {
 
             const data = res.data;
             localStorage.setItem('@user', JSON.stringify(res.data));
-            window.location.reload();
+            history.push('/');
+            // window.location.reload();
         } catch (error) {
             alert(error);
 
