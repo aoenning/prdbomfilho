@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
+import {
+    Grid,
+    Paper,
+    Avatar,
+    TextField,
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Container,
+
+} from '@material-ui/core';
 import Logo from './../../assents/Logo.png';
 import './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +29,10 @@ const Auths = () => {
     const paperStyles = { padding: 50, width: 400, margin: '70px auto' }
     const { login, usuario } = select(state => state.autenticacao)
     const { autenticacao } = useSelector(function (state) { return state.autenticacao });
+    const [name, setName] = useState('');
+    const [last_name, setLastName] = useState('');
+    const [news, setNews] = useState(true);
+    const [promotions, setPromotions] = useState(true);
     function setAutenticacao() {
         // put(loginUpdate({ usuario: { ...usuario, cpf: cpf } }));
         // put(loginUpdate({ usuario: { ...usuario, password: password } }));
@@ -43,7 +57,7 @@ const Auths = () => {
             const data = res.data;
             localStorage.setItem('@user', JSON.stringify(res.data));
             history.push('/');
-            // window.location.reload();
+            window.location.reload();
         } catch (error) {
             alert(error);
 
@@ -51,11 +65,14 @@ const Auths = () => {
     }
 
 
+    const [CPFError, setCPFError] = useState(false);
+
 
     return (
         <>
-            <Grid>
-                <Paper elevation={10} style={paperStyles}>
+            {/* <Grid> */}
+            <Container maxWidth="sm" component="article" className="form" >
+                {/* <Paper elevation={10} style={paperStyles}>
                     <Grid allgn='center' style={{ alignItems: 'center', justifyContent: 'right' }}>
                         <img src={Logo} />
                     </Grid>
@@ -85,9 +102,9 @@ const Auths = () => {
                                 password: e.target.value,
                             })
                         }
-                    />
-                    {/* <Link to="/clientes" style={{ textDecoration: 'none' }}> */}
-                    <Button
+                    /> */}
+                {/* <Link to="/clientes" style={{ textDecoration: 'none' }}> */}
+                {/* <Button
                         type="submit"
                         color="primary"
                         style={{ marginTop: 20 }}
@@ -95,9 +112,127 @@ const Auths = () => {
                         variant="contained"
                         onClick={() => loginUser()}
                     >Entrar</Button>
-                    {/* </Link> */}
+                    
+                </Paper> */}
+                <Paper elevation={10} style={paperStyles}>
+                    <Grid allgn='center' style={{ alignItems: 'center', justifyContent: 'right' }}>
+                        <img src={Logo} />
+                    </Grid>
+                    <form onSubmit={(event) => {
+                        event.preventDefault();
+                    }}>
+
+                        {/* <TextField
+                            id="name"
+                            label="Nome"
+                            variant="outlined"
+                            margin="dense"
+                            fullWidth
+                            value={name}
+                            onChange={(event) => { setName(event.target.value) }}
+                        /> */}
+
+
+                        <TextField
+                            id="cpf"
+                            label="CPF"
+                            variant="outlined"
+                            margin="dense"
+                            fullWidth
+                            error={CPFError}
+                            helperText={CPFError && "Deve conter 11 dígitos. Insira apenas os números."}
+                            // value={cpf}
+                            onBlur={(event) => {
+                                const tmpCPF = event.target.value;
+
+                                if (tmpCPF.length !== 11) {
+                                    setCPFError(true);
+                                } else {
+                                    setCPFError(false);
+                                }
+                            }}
+                            value={credenciais.cpf}
+                            onChange={(e) =>
+                                setCredenciais({
+                                    ...credenciais,
+                                    cpf: e.target.value,
+                                })
+                            }
+                        />
+                        {/* onChange={(event) => {
+                                const tmpCPF = event.target.value;
+
+                                if (tmpCPF.length === 11) {
+                                    setCPFError(false);
+                                }
+
+                                setCpf(event.target.value)
+                            }
+                            }
+                        /> */}
+
+                        <TextField
+                            id="password"
+                            label="Senha"
+                            variant="outlined"
+                            margin="dense"
+                            required
+                            fullWidth
+                            type="password"
+                            value={credenciais.password}
+                            onChange={(e) =>
+                                setCredenciais({
+                                    ...credenciais,
+                                    password: e.target.value,
+                                })
+                            }
+                        />
+
+                        <div className="checkboxes">
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="conected"
+                                        color="primary"
+                                        name="Manter conectado"
+                                        checked={promotions}
+                                        onChange={(event) => {
+                                            setPromotions(event.target.checked);
+                                        }}
+                                    />
+                                }
+                                label="Manter conectado"
+                            />
+
+                            {/* <FormControlLabel
+                                control={<Checkbox
+                                    value="news"
+                                    color="primary"
+                                    name="Novidades"
+                                    checked={news}
+                                    onChange={(event) => {
+                                        setNews(event.target.checked);
+                                    }}
+                                />}
+                                label="Novidades"
+                            /> */}
+                        </div>
+                        <Button
+                            type="submit"
+                            color="primary"
+                            style={{ marginTop: 20 }}
+                            fullWidth
+                            variant="contained"
+                            onClick={() => loginUser()}
+                        >Entrar</Button>
+
+                        {/* <Button className="btn-form" variant="contained" color="primary">
+                            Cadastrar
+                        </Button> */}
+                    </form>
                 </Paper>
-            </Grid>
+            </Container>
+            {/* </Grid> */}
         </>
     );
 }

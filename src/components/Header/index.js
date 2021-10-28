@@ -35,8 +35,9 @@ const Header = () => {
 
             const result = localStorage.clear();
             setShowMsg(false);
+
+            window.location.reload();
             history.push('/');
-            // window.location.reload();
             // .then(() => {
             // navigation.reset({
             //     routes: [{ name: 'Login' }]
@@ -49,7 +50,7 @@ const Header = () => {
     }
 
     function setOpenMsg() {
-        setMsg('Deseja realmente excluir informação?');
+        setMsg('Deseja realmente sair?');
         setShowMsg(true);
     }
 

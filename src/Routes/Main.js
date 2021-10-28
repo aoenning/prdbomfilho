@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import './styles.css';
 import SideBar from './../components/SideBar';
@@ -9,27 +9,77 @@ import Pedidos from './../pages/Pedidos';
 import Login from './../pages/Auths';
 import Vendedores from './../pages/Vendedores';
 import Produtos from './../pages/Produto';
+import { isAuthentcated } from '../components/AuthComponent';
+import CadastroUsuario from './../pages/CadastroUser';
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+        isAuthentcated() ? (
+            <Component {...props} />
+        ) : (
+            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        )
+    )} />
+);
+
 
 const Main = () => {
+    const [autenticacao, setAutenticacao] = useState(false);
+    useEffect(() => {
+        loginUser();
+    }, [])
+
+    function loginUser() {
+
+        const logado = localStorage.getItem('@user');
+        if (logado) { setAutenticacao(true) }
+
+    }
+
     return (
         <>
-            <Header />
-            <div className="container-fluid h-100" >
-                <div className="row h-100">
-                    <BrowserRouter>
-                        <SideBar />
-                        <Switch>
-                            <Route component={Pedidos} exact path="/" />
-                            <Route component={Pedidos} exact path="/Pedidos" />
-                            <Route component={Clientes} exact path="/Clientes" />
-                            <Route component={Produtos} exact path="/Produtos" />
-                            <Route component={Vendedores} exact path="/Vendedores" />
-                        </Switch>
-                    </BrowserRouter>
-                </div>
-            </div>
+            {autenticacao ? (
+                <BrowserRouter>
+                    <Header />
+                    <div className="container-fluid h-100" >
+                        <div className="row h-100">
+                            <Switch>
+                                <SideBar />
+                                <Route component={Pedidos} exact path="/" />
+                                <Route component={Pedidos} path="/Pedidos" />
+                                <Route component={Clientes} path="/Clientes" />
+                                <Route component={Produtos} path="/Produtos" />
+                                <Route component={Vendedores} path="/Vendedores" />
+                            </Switch>
+
+                        </div>
+                    </div>
+                </BrowserRouter>
+            ) : (
+                <BrowserRouter>
+                    <Switch>
+                        <>
+                            <Redirect
+                                path="/"
+                            />
+                            <Route component={Login}
+                                exact
+                                path="/" />
+                            <Route component={CadastroUsuario}
+                                exact
+                                path="/CadastroUsuario" />
+                        </>
+
+                        <PrivateRoute exact path="/Pedidos" component={Pedidos} />
+                    </Switch>
+                </BrowserRouter>
+            )
+            }
+
         </>
     )
+
 }
 
 export default Main;

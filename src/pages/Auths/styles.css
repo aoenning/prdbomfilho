@@ -1,3 +1,18 @@
+:root {
+    --primary: #9d4edd;
+    --dark: #21232f;
+    --danger: #d62828;
+    --success: #06d6a0;
+    --white: #f5f6f3;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+
 img {
     width: 100px;
     border-radius: 100%;
@@ -9,4 +24,22 @@ img {
 TextField {
     margin-bottom: 20px;
     justify-content: center;
+}
+
+.form {
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    background-color: var(--white);
+    /* box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.15); */
+}
+
+.form h1 {
+    font-size: 2rem;
+}
+
+.form .checkboxes {
+    margin: 1rem 0.4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
