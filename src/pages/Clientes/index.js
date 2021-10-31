@@ -271,7 +271,7 @@ const Clientes = () => {
 
     return (
         <>
-            <div className="col p-6 owerflow-auto h-100">
+            <div className="col p-6 owerflow-auto h-100 overflow-scroll">
                 {components.drawer ? (
                     <div className="mb-4 mt-4">
                         <div className="w-100 d-flex justify-content-between">
@@ -296,19 +296,19 @@ const Clientes = () => {
                             <div class="row mb-3 mt-3">
                                 <div class="col-3" >
                                     <b>Nome</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.nome}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.nome}
                                         onChange={(e) => setCliente('nome', e.target.value)}
                                     />
                                 </div>
                                 <div class="col-4">
                                     <b>Email</b>
-                                    <input type="email" class="form-control" placeholder="" value={cliente.email}
+                                    <input type="email" class="form-control form-control-sm" placeholder="" value={cliente.email}
                                         onChange={(e) => setCliente('email', e.target.value)}
                                     />
                                 </div>
                                 <div class="col-2">
                                     <b>Telefone</b>
-                                    <input type="tel" class="form-control" placeholder="" value={cliente.telefone}
+                                    <input type="tel" class="form-control form-control-sm" placeholder="" value={cliente.telefone}
                                         onChange={(e) => setCliente('telefone', e.target.value)} />
                                 </div>
                             </div>
@@ -317,7 +317,7 @@ const Clientes = () => {
                             <div class="row mb-4 mt-1">
                                 <div class="col-3">
                                     <b>Tipo</b>
-                                    <select class="form-control" value={cliente.documento.tipo}
+                                    <select class="form-control form-control-sm" value={cliente.documento.tipo}
                                         onChange={(e) =>
                                             setCliente('documento', {
                                                 ...cliente.documento,
@@ -333,7 +333,7 @@ const Clientes = () => {
                                 </div>
                                 <div class="col-2">
                                     <b>Numero</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.documento.numero}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.documento.numero}
                                         onChange={(e) =>
                                             setCliente('documento', {
                                                 ...cliente.documento,
@@ -348,7 +348,7 @@ const Clientes = () => {
                             <div class="row mb-4 mt-1">
                                 <div class="col-3">
                                     <b>Estado (UF)</b>
-                                    <select class="form-control" value={cliente.endereco.estado}
+                                    <select class="form-control form-control-sm" value={cliente.endereco.estado}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -366,7 +366,7 @@ const Clientes = () => {
                                 </div>
                                 <div class="col-3">
                                     <b>Cidade</b>
-                                    <select class="form-control" value={cliente.endereco.cidade}
+                                    <select class="form-control form-control-sm" value={cliente.endereco.cidade}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -392,7 +392,7 @@ const Clientes = () => {
                                 </div>
                                 <div class="col-2">
                                     <b>Cep</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.endereco.cep}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.endereco.cep}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -406,7 +406,7 @@ const Clientes = () => {
                             <div class="row mb-4 mt-1">
                                 <div class="col-5">
                                     <b>Rua</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.endereco.logradouro}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.endereco.logradouro}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -417,7 +417,7 @@ const Clientes = () => {
                                 </div>
                                 <div class="col-1">
                                     <b>Numero</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.endereco.numero}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.endereco.numero}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -428,7 +428,7 @@ const Clientes = () => {
                                 </div>
                                 <div class="col-2">
                                     <b>Bairro</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.endereco.bairro}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.endereco.bairro}
                                         onChange={(e) =>
                                             setCliente('endereco', {
                                                 ...cliente.endereco,
@@ -443,14 +443,14 @@ const Clientes = () => {
                             <div class="row mb-4 mt-1">
                                 <div class="col-3">
                                     <b>Tipo atividade</b>
-                                    <input type="text" class="form-control" placeholder="" value={cliente.tipo_atividade}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" value={cliente.tipo_atividade}
                                         onChange={(e) =>
                                             setCliente('tipo_atividade', e.target.value)}
                                     />
                                 </div>
                                 <div class="col-2">
                                     <b>status</b>
-                                    <input type="text" class="form-control" placeholder="" disabled={true} value={cliente.status}
+                                    <input type="text" class="form-control form-control-sm" placeholder="" disabled={true} value={cliente.status}
                                         onChange={(e) =>
                                             setCliente('status', e.target.value)}
                                     />
@@ -490,21 +490,25 @@ const Clientes = () => {
                 ) : (
                     <div>
                         <h3 className="mb-4 mt-4"> Pesquisar cliente</h3>
-                        <b>Nome</b>
-                        <div className="input-group mb-4 mt-4">
+                        {/* <b>Nome</b> */}
+                        {/* <div className="d-flex input-group mb-4 mt-4 form-control">
+                            <span className="mdi mdi-account-search " />
                             <input
                                 type="search"
-                                className="form-control form-control-lm"
+                                className="form-control form-control-sm"
                                 placeholder="Nome do cliente"
                                 onChange={(txt) => setSearchView(txt.target.value)}
                             />
+                        </div> */}
 
-                            <div className="input-group-append px-3">
-                                <button
-                                    className="btn btn-primary btn-lm"
-                                    onClick={() => setComponent()}>
-                                    <span className="mdi mdi-account-search"> Pesquisar</span>
-                                </button>
+                        <div className="search">
+                            <div className="search--input">
+                                <div className="mdi mdi-account-search"/>
+                                <input
+                                    type="search"
+                                    placeholder="Nome do cliente"
+                                    onChange={(txt) => setSearchView(txt.target.value)}
+                                />
                             </div>
                         </div>
 

@@ -4,8 +4,9 @@ import logo from './../../assents/Logo.png';
 
 const SideBar = ({ location }) => {
     return (
-        <sidebar className="col-2 h-100">
-            <img src={logo} className="img-fluid px-1 py-5" />
+
+        <sidebar className="col-2 h-100 overflow-scroll justify-content-center align-items-center" >
+            <img src={logo} className="img-fluid px-0 py-4" />
             <ul className="p-0 n-0">
                 <li>
                     <Link to="/Dashboard" className={location.pathname === '/Dashboard' ? 'active' : ''}>

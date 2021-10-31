@@ -11,7 +11,6 @@ import {
 
 
 const Header = () => {
-    const [autenticacao, setAutenticacao] = useState(false);
     const [user, setUser] = useState(null);
     const [showMsg, setShowMsg] = useState(false);
     const [msg, setMsg] = React.useState('');
@@ -24,7 +23,6 @@ const Header = () => {
     function loginUser() {
         const storageUser = localStorage.getItem('@user');
         if (storageUser) {
-            // setAutenticacao(true)
             setUser(JSON.parse(storageUser))
         }
 
@@ -38,12 +36,6 @@ const Header = () => {
 
             window.location.reload();
             history.push('/');
-            // .then(() => {
-            // navigation.reset({
-            //     routes: [{ name: 'Login' }]
-            // });
-            //  navigation.navigate("Login");
-            // })
         } catch (error) {
             console.log(error);
         }
@@ -66,7 +58,7 @@ const Header = () => {
                 <span className="mdi mid-chevron-down text-white"></span>
             </div>
             <div className="d-flex  align-items-center justify-content-center" onClick={() => setOpenMsg()}>
-                <div>
+                <div className="justify-content-center">
                     <span className="d-block n-0 p-0 text-white">Sair</span>
                 </div>
                 <span className="mdi mdi-logout"></span>

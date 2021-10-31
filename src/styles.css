@@ -2,8 +2,9 @@
     --primary: #9d4edd;
     --dark: #21232f;
     --danger: #d62828;
-    --success: #06d6a0;
-    --white: #f5f6f3;
+    --success: #f2f2f2;
+    --white: #fff;
+    
 }
 
 #root {
@@ -15,6 +16,7 @@
 
 header {
     background-color: var(--primary);
+    
 }
 
 header > div {
@@ -37,12 +39,12 @@ header img {
 }
 
 header span:not(.mdi) {
-    margin-bottom: -10px;
+    /* margin-bottom: -10px; */
 }
 
 header span.mdi {
     font-size: 20px;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 header small {
@@ -54,8 +56,19 @@ header small {
 /*=======================================================================*/
 /*Styles SideBar*/
 
-sidebar {
+sidebar {  
+    /* height: 100px; */
     background-color: var(--dark);
+    /* overflow:scroll; */
+}
+
+sidebar::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+}
+
+sidebar::-webkit-scrollbar-thumb{    
+    background-color: var(--primary)
 }
 
 sidebar ul li {
@@ -63,9 +76,11 @@ sidebar ul li {
     width: 100%;
 }
 
+
+
 sidebar ul li a {
     width: 100%;
-    color: #fff;
+    color: var(--white);
     opacity: 0.6;
     display: flex;
     align-items: center;
@@ -85,10 +100,10 @@ sidebar ul li a.active .mdi {
  color: var(--primary);
 }
 
- sidebar ul li a:visited,
+ /* sidebar ul li a:visited,
  sidebar ul li a:focus {
  color: var(--white);
-}
+} */
 
 
 sidebar ul li a.hover {

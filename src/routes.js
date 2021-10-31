@@ -9,7 +9,7 @@ import Pedidos from './pages/Pedidos';
 import Produtos from './pages/Produto';
 import Login from './pages/Auths';
 import CadastroUsuario from './pages/CadastroUser';
-import Dashborard from './pages/Dashborard';
+import Dashboard from './pages/Dashboard';
 
 const Routes = () => {
     const [autenticacao, setAutenticacao] = useState(false);
@@ -33,8 +33,9 @@ const Routes = () => {
                             <BrowserRouter>
                                 <SideBar />
                                 <Switch>
-                                    <Route component={Clientes} path="/" />
-                                    <Route component={Pedidos} path="/Pedidos" exact />
+                                    <Route component={Clientes} exact path="/" />
+                                    <Route component={Clientes} exact path="/Clientes" />
+                                    <Route component={Pedidos} path="/Pedidos" />
                                     <Route component={Produtos} path="/Produtos" />
                                 </Switch>
                             </BrowserRouter>
