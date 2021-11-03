@@ -29,9 +29,10 @@ TextField {
 .form {
     align-items: center;
     justify-content: center;
+    /* background-color: var(--white); */
     /* padding: 2rem 3rem;
     border-radius: 1rem;
-    background-color: var(--white);
+  
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.15); */
 }
 

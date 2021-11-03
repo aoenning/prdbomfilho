@@ -33,7 +33,7 @@ const Auths = () => {
     const [promotions, setPromotions] = useState(true);
 
 
-    const paperStyles = { padding: 50, height: '70vh', width: 400, margin: '70px auto' }
+    const paperStyles = { padding: 50, height: '70vh', width: 400, margin: '70px auto', backgroundColor: '#f2f2f2' }
     const imgStyle = {}
 
 
@@ -127,6 +127,7 @@ const Auths = () => {
                             }
                         />
                         <TextField
+
                             id="password"
                             label="Senha"
                             variant="outlined"
@@ -148,7 +149,7 @@ const Auths = () => {
                                 control={
                                     <Checkbox
                                         value="conected"
-                                        color="primary"
+                                        color='primary'
                                         name="Lembrar"
                                         checked={promotions}
                                         onChange={(event) => {

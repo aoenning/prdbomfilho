@@ -6,11 +6,13 @@ import consts from './../../../consts';
 import clientes from './reducer';
 
 export function* allClientes() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
     const { form, mensagem, dialog } = yield select(state => state.clientes)
     try {
         yield put(clientesUpdate({ form: { ...form, filtering: true } }));
         const res = yield call(api.get, '/clientes', {
-            token: consts.token
+            token: user.token
         });
 
         yield put(clientesUpdate({ form: { ...form, filtering: false } }));
@@ -33,10 +35,12 @@ export function* allClientes() {
 }
 
 export function* addClientes() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
 
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + consts.token
+            'Authorization': 'Bearer ' + user.token
         }
     }
     const { form, cliente, components, behavior, mensagem, dialog } = yield select(state => state.clientes);
@@ -87,9 +91,11 @@ export function* addClientes() {
 }
 
 export function* deleteClientes() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + consts.token
+            'Authorization': 'Bearer ' + user.token
         }
     }
     const { form, cliente, components, mensagem, dialog } = yield select(state => state.clientes);

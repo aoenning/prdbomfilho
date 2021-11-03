@@ -6,11 +6,15 @@ import consts from './../../../consts';
 import produtos from './reducer';
 
 export function* allProdutos() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
+
+
     const { form, mensagem, dialog } = yield select(state => state.produtos)
     try {
         yield put(produtosUpdate({ form: { ...form, filtering: true } }));
         const res = yield call(api.get, '/produtos', {
-            token: consts.token
+            token: user.token
         });
 
         yield put(produtosUpdate({ form: { ...form, filtering: false } }));
@@ -31,10 +35,12 @@ export function* allProdutos() {
 }
 
 export function* addProdutos() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
 
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + consts.token
+            'Authorization': 'Bearer ' + user.token
         }
     }
     const { form, produto, components, behavior, mensagem, dialog } = yield select(state => state.produtos);
@@ -85,9 +91,12 @@ export function* addProdutos() {
 }
 
 export function* deleteProdutos() {
+    const storageUser = localStorage.getItem('@user');
+    const user = JSON.parse(storageUser);
+
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + consts.token
+            'Authorization': 'Bearer ' + user.token
         }
     }
     const { form, produto, components, mensagem, dialog } = yield select(state => state.produtos);
