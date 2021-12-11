@@ -72,14 +72,13 @@ const Produto = () => {
     }, [produtos]);
 
     useEffect(() => {
-        if (behavior === 'update') {
-            dispatch(produtosUpdate({ image: produto.image }));
+        console.log(behavior);
+        if (behavior == 'update') {
+            console.log(produto.image.url);
+            dispatch(produtosUpdate({ image: produto.image.url }));
         }
     }, [behavior])
 
-    useEffect(() => {
-        console.log(produto);
-    }, [produto]);
 
     useEffect(() => {
         setListProdutos([]);
@@ -195,11 +194,15 @@ const Produto = () => {
                         </div>
                         <h3 className="mb-2 mt-5">Imagem</h3>
                         <div class="col-4" style={{ alignItems: 'center', justifyContent: 'right' }}>
-                            <img src={behavior === 'create' ? image : { uri: image }} />
+                            <img src={image} />
                         </div>
-                        <div class="col-4" >
-                            <input type="file" class="form-control" onChange={(e) => formtData(e.target.files[0])} />
-                        </div>
+                        {behavior === 'create' &&
+                            (
+                                <div class="col-4" >
+                                    <input type="file" class="form-control" onChange={(e) => formtData(e.target.files[0])} />
+                                </div>
+                            )
+                        }
 
                         <form>
                             <div class="row mb-3 mt-3">
