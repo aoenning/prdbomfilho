@@ -4,6 +4,7 @@ const types = {
     RESETE_PRODUTO: '@produto/RESETE',
     ADD_PRODUTO: '@produto/ADD',
     DELETE_PRODUTO: '@produto/DELETE',
+   
 }
 
 export default types;

@@ -38,8 +38,8 @@ const Produto = () => {
     const [ufs, setUfs] = useState([]);
     const [cities, setCities] = useState([]);
     const dispatch = useDispatch();
-
-    const { produtos, produto, form, behavior, components, mensagem, dialog } = useSelector(function (state) { return state.produtos });
+    // const [image, setImage] = useState('');
+    const { produtos, produto, form, behavior, components, mensagem, dialog, file, image } = useSelector(function (state) { return state.produtos });
 
     const setComponent = (component, state) => {
         dispatch(produtosUpdate({
@@ -70,6 +70,16 @@ const Produto = () => {
     useEffect(() => {
         setListProdutos(produtos);
     }, [produtos]);
+
+    useEffect(() => {
+        if (behavior === 'update') {
+            dispatch(produtosUpdate({ image: produto.image }));
+        }
+    }, [behavior])
+
+    useEffect(() => {
+        console.log(produto);
+    }, [produto]);
 
     useEffect(() => {
         setListProdutos([]);
@@ -148,6 +158,18 @@ const Produto = () => {
         setMsg('Deseja realmente excluir?')
     }
 
+    const formtData = (file) => {
+        // const formData = new FormData();
+        // formData.append('image', file);
+
+
+        if (file) {
+            // const img = URL.createObjectURL(file)
+            dispatch(produtosUpdate({ file: file }));
+            dispatch(produtosUpdate({ image: URL.createObjectURL(file) }));
+        }
+    }
+
     return (
         <>
             <div className="col p-6 owerflow-auto h-100">
@@ -171,6 +193,14 @@ const Produto = () => {
                                 </button>
                             </div>
                         </div>
+                        <h3 className="mb-2 mt-5">Imagem</h3>
+                        <div class="col-4" style={{ alignItems: 'center', justifyContent: 'right' }}>
+                            <img src={behavior === 'create' ? image : { uri: image }} />
+                        </div>
+                        <div class="col-4" >
+                            <input type="file" class="form-control" onChange={(e) => formtData(e.target.files[0])} />
+                        </div>
+
                         <form>
                             <div class="row mb-3 mt-3">
                                 <div class="col-3" >
@@ -297,10 +327,8 @@ const Produto = () => {
                                                 })
                                                 );
 
-                                                dispatch(produtosUpdate({
-                                                    produto,
-                                                })
-                                                );
+                                                dispatch(produtosUpdate({ produto }));
+                                                dispatch(produtosUpdate({ image: produto.url }));
                                                 setComponent('drawer', true);
                                             }
                                         }

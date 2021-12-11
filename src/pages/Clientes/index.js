@@ -503,7 +503,7 @@ const Clientes = () => {
 
                         <div className="search">
                             <div className="search--input">
-                                <div className="mdi mdi-account-search"/>
+                                <div className="mdi mdi-account-search" />
                                 <input
                                     type="search"
                                     placeholder="Nome do cliente"

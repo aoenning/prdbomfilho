@@ -43,13 +43,19 @@ export function* addProdutos() {
             'Authorization': 'Bearer ' + user.token
         }
     }
-    const { form, produto, components, behavior, mensagem, dialog } = yield select(state => state.produtos);
+    const { form, produto, components, behavior, mensagem, dialog, file } = yield select(state => state.produtos);
     yield put(produtosUpdate({ form: { ...form, saving: true } }));
 
+    const data = new FormData();
+    // data.append('produto', JSON.stringify(produto));
+    data.append('descricao', JSON.stringify(produto.descricao));
+    data.append('unidade', JSON.stringify(produto.unidade));
+    data.append('preco', JSON.stringify(produto.preco));
+    data.append('file', file);
     try {
 
         if (behavior === 'create') {
-            const res = yield call(api.post, '/produtos', produto, {
+            const res = yield call(api.post, '/produtos', data, {
                 config,
             });
 

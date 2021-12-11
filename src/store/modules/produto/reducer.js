@@ -19,6 +19,8 @@ const INITIAL_STATE = {
 
     },
     produtos: [],
+    file: '',
+    image: '',
     produto: {
         descricao: '',
         unidade: '',
@@ -39,6 +41,7 @@ function produtos(state = INITIAL_STATE, action) {
         case types.RESETE_PRODUTO: {
             return produce(state, (draft) => {
                 draft.produto = INITIAL_STATE.produto;
+                draft.image = INITIAL_STATE.image;
                 return draft;
             });
         }
